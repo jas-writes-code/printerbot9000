@@ -1,14 +1,17 @@
 from itertools import count
-
+import json
 import usb.core
 from escpos.printer import Usb
 from discord import *
 import textwrap
 
-p = Usb(0x04b8, 0x0e15, 0, profile="TM-T20II")
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
+key = config['key']
+loc = config['location'].split(':')
+p = Usb(loc[0], loc[1], 0, profile=config['profile'])
 client = Client(intents=Intents.all())
-key = "TOKEN HERE"
 
 async def reline(content):
     back = ""
