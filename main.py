@@ -19,8 +19,8 @@ async def reline(content):
 
     con = content.split("\n")
     for element in con:
-        if len(element) > 45:
-            set.append(textwrap.fill(element, width=30))
+        if len(element) > config["width"]:
+            set.append(textwrap.fill(element, width=config["width"]))
         else:
             set.append(element)
 
